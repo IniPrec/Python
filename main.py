@@ -17,13 +17,14 @@ def balance():
 
 quit = False
 print("Welcome to the ATM!")
+max_attempts = 3
 attempts = 0
 
-while not quit:
+while attempts < max_attempts:
 	pin = int(input("Enter your four-digit pin: "))
 	if pin == user['pin']:
 		print("What do you want to do?\n")
-		input("1. Withdrawal\n2. Balance\n3. Quit\n")
+		print("1. Withdrawal\n2. Balance\n3. Quit\n")
 		choice = input()
 		match choice:
 			case "1": 
@@ -31,20 +32,20 @@ while not quit:
 			case "2":
 				balance()
 			case "3":
-				quit = True
+				break
 			case _:
 				print("Invalid Choice! Choose 1 for withdrawal, 2 for balance enquiry and 3 to quit.")
 	else:
-		while attempts == 3:
-			attempts += 1
-			if attempts != 3:
-				print("Incorrect Pin! Try again!")
-			else:
-				print("Incorrect Pin! Your card has been blocked due to multiple failed attempts")
+		attempts += 1
+		if attempts < max_attempts:
+			print("Incorrect Pin! Try again!")
+		else:
+			print("Incorrect Pin! Your card has been blocked due to multiple failed attempts")
+			exit()
 
 	proceed = input("Would you like to perform another transaction? (1. Yes / 2. No): ")
 	if proceed == "2":
-		quit = True
+		break
 
 print("Thank you for using our services. Have a good day!")
 
