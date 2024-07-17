@@ -21,19 +21,28 @@ attempts = 0
 
 pin = int(input("Enter your four-digit pin: "))
 if pin == user['pin']:
-	while not quit:
-		print("What do you want to do?\n")
-		choice = (input(print("1. Withdrawal\n2. Balance\n3. Quit\n")))
-		match choice:
-			case "1": 
-					withdrawal()
+	print("What do you want to do?\n")
+	choice = (input(print("1. Withdrawal\n2. Balance\n3. Quit\n")))
+	match choice:
+		case "1": 
+			withdrawal()
+		case "2":
+			balance()
+		case "3":
+			quit = True
+		case _:
+			print("Invalid Choice! Choose 1 for withdrawal, 2 for balance enquiry and 3 to quit.")
+			
+	if choice != "3":
+		print("Would you like to continue?")
+		proceed = input("1. Yes\n2. No\n")
+		match proceed:
+			case "1":
+				
 			case "2":
-					balance()
-			case "3":
-					quit = True
-			case _:
-				print("Invalid Choice! Choose 1 for withdrawal, 2 for balance enquiry and 3 to quit.")
-
+				quit = True
+				print("Thank you for using our services. Have a good day!")
+	
 else:
 	while attempts == 3:
 		attempts += 1
